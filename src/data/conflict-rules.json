@@ -1,0 +1,250 @@
+[
+  {
+    "id": "retinoid-x-chemical-exfoliant",
+    "ingredientA": "category:retinoid",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "space-out",
+    "reason": "Retinoids and direct acids each increase cell turnover; used in the same session they compound irritation, dryness, and barrier damage without added benefit for most skin.",
+    "recommendation": "Use the retinoid at night and the exfoliant on alternate nights or in the AM (with SPF). Tolerant skin can sometimes combine them, but start separated."
+  },
+  {
+    "id": "retinoid-x-physical-exfoliant",
+    "ingredientA": "category:retinoid",
+    "ingredientB": "category:exfoliant-physical",
+    "severity": "monitor-irritation",
+    "reason": "Scrubbing skin that a retinoid has already made more fragile increases the chance of micro-abrasion and irritation.",
+    "recommendation": "Keep physical exfoliation gentle and infrequent (1-2x/week), on nights you skip the retinoid."
+  },
+  {
+    "id": "chemical-x-chemical-exfoliant",
+    "ingredientA": "category:exfoliant-chemical",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Stacking multiple acid products (AHA + BHA + acid toner, etc.) in one session raises over-exfoliation risk: stinging, flaking, and a compromised barrier.",
+    "recommendation": "One exfoliating product per session is enough for most skin. Products intentionally formulated with multiple acids count as one."
+  },
+  {
+    "id": "chemical-x-physical-exfoliant",
+    "ingredientA": "category:exfoliant-chemical",
+    "ingredientB": "category:exfoliant-physical",
+    "severity": "monitor-irritation",
+    "reason": "Combining chemical and physical exfoliation in the same session compounds barrier stress.",
+    "recommendation": "Pick one method per session; alternate days if you want both in your routine."
+  },
+  {
+    "id": "retinoid-x-retinoid",
+    "ingredientA": "category:retinoid",
+    "ingredientB": "category:retinoid",
+    "severity": "monitor-irritation",
+    "reason": "Layering two retinoid products adds irritation without meaningful added benefit — retinoid response plateaus, irritation doesn't.",
+    "recommendation": "Keep one retinoid product per routine; choose the strength you tolerate."
+  },
+  {
+    "id": "retinoid-x-benzoyl-peroxide",
+    "ingredientA": "category:retinoid",
+    "ingredientB": "benzoyl-peroxide",
+    "severity": "space-out",
+    "reason": "Benzoyl peroxide is a strong oxidizer and degrades most retinoids on contact. Exception: adapalene is chemically stable with BP (they're co-formulated in Epiduo).",
+    "recommendation": "Use benzoyl peroxide in the AM and the retinoid in the PM, or on alternate nights. If your retinoid is adapalene, layering is chemically fine — watch irritation only."
+  },
+  {
+    "id": "tretinoin-x-benzoyl-peroxide",
+    "ingredientA": "tretinoin",
+    "ingredientB": "benzoyl-peroxide",
+    "severity": "avoid-same-routine",
+    "reason": "Benzoyl peroxide oxidizes tretinoin, substantially reducing its potency — a well-documented interaction (modern co-formulated prescriptions use encapsulation to avoid it).",
+    "recommendation": "Benzoyl peroxide in the AM, tretinoin in the PM."
+  },
+  {
+    "id": "retinol-x-benzoyl-peroxide",
+    "ingredientA": "retinol",
+    "ingredientB": "benzoyl-peroxide",
+    "severity": "avoid-same-routine",
+    "reason": "Benzoyl peroxide oxidizes retinol, degrading it before it can convert to retinoic acid.",
+    "recommendation": "Benzoyl peroxide in the AM, retinol in the PM."
+  },
+  {
+    "id": "retinaldehyde-x-benzoyl-peroxide",
+    "ingredientA": "retinaldehyde",
+    "ingredientB": "benzoyl-peroxide",
+    "severity": "avoid-same-routine",
+    "reason": "Like retinol, retinaldehyde is vulnerable to oxidation by benzoyl peroxide.",
+    "recommendation": "Benzoyl peroxide in the AM, retinaldehyde in the PM."
+  },
+  {
+    "id": "benzoyl-peroxide-x-ascorbic-acid",
+    "ingredientA": "benzoyl-peroxide",
+    "ingredientB": "ascorbic-acid",
+    "severity": "avoid-same-routine",
+    "reason": "Benzoyl peroxide oxidizes L-ascorbic acid, neutralizing the antioxidant before it does anything. (Stable vitamin C derivatives are less affected.)",
+    "recommendation": "Vitamin C in the AM, benzoyl peroxide in the PM — or use a stable derivative like SAP, which also has acne evidence."
+  },
+  {
+    "id": "benzoyl-peroxide-x-hydroquinone",
+    "ingredientA": "benzoyl-peroxide",
+    "ingredientB": "hydroquinone",
+    "severity": "avoid-same-routine",
+    "reason": "Benzoyl peroxide (and other peroxides) can cause temporary dark staining of skin when layered directly with hydroquinone.",
+    "recommendation": "Separate to different times of day; wash between applications if switching."
+  },
+  {
+    "id": "benzoyl-peroxide-x-chemical-exfoliant",
+    "ingredientA": "benzoyl-peroxide",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Both are drying; combined in one session they commonly cause flaking and stinging, especially on acne-prone skin already using multiple actives.",
+    "recommendation": "If skin gets dry or red, alternate them (e.g. BHA in AM, BP in PM) rather than stacking."
+  },
+  {
+    "id": "benzoyl-peroxide-x-tea-tree-oil",
+    "ingredientA": "benzoyl-peroxide",
+    "ingredientB": "tea-tree-oil",
+    "severity": "monitor-irritation",
+    "reason": "Two drying antibacterial acne actives; stacking them is a common cause of over-dried, irritated skin.",
+    "recommendation": "Pick one as your primary acne active; drop or space out the other."
+  },
+  {
+    "id": "sulfur-x-retinoid",
+    "ingredientA": "sulfur",
+    "ingredientB": "category:retinoid",
+    "severity": "monitor-irritation",
+    "reason": "Sulfur is drying and retinoids compromise the barrier while skin adjusts — together they commonly cause peeling.",
+    "recommendation": "Use sulfur spot treatments or masks on nights you skip the retinoid."
+  },
+  {
+    "id": "sulfur-x-chemical-exfoliant",
+    "ingredientA": "sulfur",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Both are drying/keratolytic; combined they raise dryness and flaking risk.",
+    "recommendation": "Alternate sessions rather than layering."
+  },
+  {
+    "id": "ascorbic-acid-x-retinoid",
+    "ingredientA": "ascorbic-acid",
+    "ingredientB": "category:retinoid",
+    "severity": "space-out",
+    "reason": "L-ascorbic acid needs a low pH and retinoids work best nearer skin's natural pH; layering also stacks two potentially irritating actives. The pH concern is debated, the irritation stacking is not.",
+    "recommendation": "The classic split: vitamin C in the AM (it boosts sunscreen's antioxidant protection), retinoid in the PM."
+  },
+  {
+    "id": "ascorbic-acid-x-chemical-exfoliant",
+    "ingredientA": "ascorbic-acid",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Both sit at low pH and can each sting on their own; combined they raise irritation risk. Chemically they coexist fine — this is a skin-tolerance issue, not a deactivation issue.",
+    "recommendation": "Tolerant skin can layer them; if you get stinging or redness, move vitamin C to AM and acids to PM."
+  },
+  {
+    "id": "ascorbic-acid-x-niacinamide",
+    "ingredientA": "ascorbic-acid",
+    "ingredientB": "niacinamide",
+    "severity": "monitor-irritation",
+    "reason": "The claim that these cancel each other is based on 1960s studies of unstabilized solutions at high heat and is largely considered debunked — modern formulas even combine them. Flagged only because a small number of users report temporary flushing.",
+    "recommendation": "Generally fine to layer. If you notice flushing, apply at different times of day."
+  },
+  {
+    "id": "ascorbic-acid-x-copper-peptides",
+    "ingredientA": "ascorbic-acid",
+    "ingredientB": "copper-peptides",
+    "severity": "space-out",
+    "reason": "Copper ions can catalyze oxidation of L-ascorbic acid, and the low pH of vitamin C serums may affect the peptide-copper complex. Evidence is mostly chemical/theoretical rather than clinical, but the community convention is to separate them.",
+    "recommendation": "Vitamin C in the AM, copper peptides in the PM (or alternate days)."
+  },
+  {
+    "id": "copper-peptides-x-chemical-exfoliant",
+    "ingredientA": "copper-peptides",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Low-pH acids may destabilize the copper-peptide complex. This is a theoretical formulation concern, not a documented clinical interaction.",
+    "recommendation": "Apply at different times of day if you want to be cautious."
+  },
+  {
+    "id": "peptides-x-chemical-exfoliant",
+    "ingredientA": "category:peptide",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "A common claim holds that direct acids hydrolyze peptides, reducing their effect. Evidence is weak — flagged for awareness, not alarm.",
+    "recommendation": "If you want maximum benefit from an expensive peptide product, apply it at a different time of day than strong acids."
+  },
+  {
+    "id": "glycolic-x-tretinoin",
+    "ingredientA": "glycolic-acid",
+    "ingredientB": "tretinoin",
+    "severity": "avoid-same-routine",
+    "reason": "Tretinoin plus a strong AHA in one session is a common cause of significant peeling and barrier damage; dermatologists routinely advise separating them.",
+    "recommendation": "Tretinoin at night; glycolic acid on non-tretinoin nights or in the AM with SPF."
+  },
+  {
+    "id": "hydroquinone-x-chemical-exfoliant",
+    "ingredientA": "hydroquinone",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Hydroquinone is already irritating for many users; acids compound it.",
+    "recommendation": "Introduce one at a time and watch for irritation — ideally under the guidance of the prescriber."
+  },
+  {
+    "id": "hydroquinone-x-retinoid",
+    "ingredientA": "hydroquinone",
+    "ingredientB": "category:retinoid",
+    "severity": "monitor-irritation",
+    "reason": "This combination is often intentionally prescribed together for melasma (e.g. triple cream), but irritation is common and should be supervised.",
+    "recommendation": "Fine if a dermatologist prescribed the combination; otherwise introduce slowly and watch for redness."
+  },
+  {
+    "id": "vitamin-c-x-vitamin-c",
+    "ingredientA": "category:vitamin-c",
+    "ingredientB": "category:vitamin-c",
+    "severity": "monitor-irritation",
+    "reason": "Layering multiple vitamin C products adds irritation potential (especially with L-ascorbic acid) without meaningful added benefit — absorption saturates.",
+    "recommendation": "One vitamin C product per routine is enough; this is also a spending redundancy."
+  },
+  {
+    "id": "retinoid-x-alcohol-denat",
+    "ingredientA": "category:retinoid",
+    "ingredientB": "alcohol-denat",
+    "severity": "monitor-irritation",
+    "reason": "High-alcohol products (some toners, astringents) can amplify the dryness of retinoids during the adjustment period. Small amounts of alcohol in well-formulated products are not a concern.",
+    "recommendation": "If experiencing dryness, swap the high-alcohol product for a hydrating alternative rather than dropping the retinoid."
+  },
+  {
+    "id": "witch-hazel-x-retinoid",
+    "ingredientA": "witch-hazel",
+    "ingredientB": "category:retinoid",
+    "severity": "monitor-irritation",
+    "reason": "Astringent witch hazel (especially alcohol-containing distillates) adds dryness on top of retinoid adjustment.",
+    "recommendation": "Skip astringent toners on retinoid nights if skin feels tight or flaky."
+  },
+  {
+    "id": "avobenzone-x-octinoxate",
+    "ingredientA": "avobenzone",
+    "ingredientB": "octinoxate",
+    "severity": "monitor-irritation",
+    "reason": "Octinoxate destabilizes avobenzone in unstabilized combinations, reducing UVA protection. Within a single product, formulators handle this — the risk is layering two different chemical sunscreens.",
+    "recommendation": "Don't mix different sunscreen products on the same skin area; pick one and apply it generously."
+  },
+  {
+    "id": "avobenzone-x-zinc-oxide",
+    "ingredientA": "avobenzone",
+    "ingredientB": "zinc-oxide",
+    "severity": "monitor-irritation",
+    "reason": "The US FDA sunscreen monograph does not permit avobenzone and zinc oxide in the same product due to stability concerns. Layering a chemical and a mineral sunscreen may likewise compromise the avobenzone.",
+    "recommendation": "Use one sunscreen rather than layering a chemical one with a mineral one."
+  },
+  {
+    "id": "kojic-acid-x-chemical-exfoliant",
+    "ingredientA": "kojic-acid",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Kojic acid can sensitize skin over time; combining with acids raises irritation risk.",
+    "recommendation": "Introduce separately and watch for redness or contact dermatitis."
+  },
+  {
+    "id": "urea-high-x-chemical-exfoliant",
+    "ingredientA": "urea",
+    "ingredientB": "category:exfoliant-chemical",
+    "severity": "monitor-irritation",
+    "reason": "Above ~10%, urea is keratolytic (exfoliating) itself; stacking it with acids compounds exfoliation. At low moisturizer concentrations this is a non-issue.",
+    "recommendation": "Only a concern with high-strength urea creams (10%+); otherwise ignore."
+  }
+]
