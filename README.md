@@ -22,7 +22,7 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - [x] **Phase 2** — routine builder (AM/PM slots, drag-to-reorder, localStorage)
 - [x] **Phase 3** — compatibility engine (pairwise conflict checks, layering order)
 - [x] **Phase 4** — gap analysis (functional coverage checklist per time of day)
-- [ ] Phase 5 — redundancy & spend optimizer
+- [x] **Phase 5** — redundancy & spend optimizer
 - [ ] Phase 6 — fuzzy ingredient matching + eval scaffolding (stats analysis
       done by hand, per spec §8)
 - [ ] Phase 7 — dashboard/polish
@@ -45,4 +45,7 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - `src/lib/gaps.ts` — functional checklist (AM: cleanse/hydrate/antioxidant/
   moisturize/SPF, PM: cleanse/treat/moisturize); rinse-off products don't
   satisfy leave-on steps; advisory phrasing only
+- `src/lib/redundancy.ts` — same-role detection (active roles across the
+  routine, structural categories per column) with brand-neutral spend
+  estimates (savings assume keeping the least expensive)
 - `src/components/` — product library + routine builder UI

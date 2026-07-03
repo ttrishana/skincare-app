@@ -14,7 +14,7 @@ function hasIngredientCategory(product: Product, ...cats: IngredientCategory[]):
  * glycerin in a cleanser or the niacinamide in a wash-off mask spends
  * seconds on skin, not hours.
  */
-function isLeaveOn(product: Product): boolean {
+export function isLeaveOn(product: Product): boolean {
   return product.category !== 'cleanser' && product.category !== 'mask'
 }
 

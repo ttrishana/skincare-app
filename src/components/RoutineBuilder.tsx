@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import ConflictReport from './ConflictReport'
 import CoverageReport from './CoverageReport'
+import RedundancyReport from './RedundancyReport'
 import { slotsFor, type RoutineTime } from '../lib/routine'
 import type { RoutineApi } from '../lib/useRoutine'
 import type { Product, ProductCategory } from '../types'
@@ -21,12 +22,29 @@ interface Props {
   onBrowse: () => void
 }
 
+function columnProducts(
+  api: RoutineApi,
+  productById: Map<string, Product>,
+  time: RoutineTime,
+): Product[] {
+  return slotsFor(api.routine, time)
+    .map((s) => productById.get(s.productId))
+    .filter((p): p is Product => p !== undefined)
+}
+
 export default function RoutineBuilder({ api, productById, onBrowse }: Props) {
+  const columns = {
+    AM: columnProducts(api, productById, 'AM'),
+    PM: columnProducts(api, productById, 'PM'),
+  }
   return (
-    <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-      <RoutineColumn time="AM" icon="☀️" api={api} productById={productById} onBrowse={onBrowse} />
-      <RoutineColumn time="PM" icon="🌙" api={api} productById={productById} onBrowse={onBrowse} />
-    </section>
+    <>
+      <section className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <RoutineColumn time="AM" icon="☀️" api={api} productById={productById} onBrowse={onBrowse} />
+        <RoutineColumn time="PM" icon="🌙" api={api} productById={productById} onBrowse={onBrowse} />
+      </section>
+      <RedundancyReport columns={columns} />
+    </>
   )
 }
 
