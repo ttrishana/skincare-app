@@ -19,7 +19,7 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 
 - [x] **Phase 1** — data layer (types + seed JSON), product search/browse,
       "add custom product" flow with INCI-list matching
-- [ ] Phase 2 — routine builder (AM/PM slots, drag-to-reorder, localStorage)
+- [x] **Phase 2** — routine builder (AM/PM slots, drag-to-reorder, localStorage)
 - [ ] Phase 3 — compatibility engine (pairwise conflict checks, layering order)
 - [ ] Phase 4 — gap analysis
 - [ ] Phase 5 — redundancy & spend optimizer
@@ -27,10 +27,8 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
       done by hand, per spec §8)
 - [ ] Phase 7 — dashboard/polish
 
-> **Seed data pending review** — `src/data/conflict-rules.json` needs a
-> sanity-check of the dermatological claims before the compatibility engine
-> is built on top of it (spec §4). See `src/data/README.md` for data
-> conventions and caveats.
+> Seed data (`src/data/conflict-rules.json`) reviewed and approved
+> 2026-07-03. See `src/data/README.md` for data conventions and caveats.
 
 ## Layout
 
@@ -39,4 +37,6 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - `src/lib/matching.ts` — normalized exact INCI matching (Phase 6 replaces
   this with a confidence-scored fuzzy matcher)
 - `src/lib/customProducts.ts` — localStorage persistence for user products
-- `src/components/` — product library UI
+- `src/lib/routine.ts` + `src/lib/useRoutine.ts` — routine model (pure
+  helpers) and its React/localStorage binding
+- `src/components/` — product library + routine builder UI

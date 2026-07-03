@@ -1,12 +1,7 @@
 import { useMemo, useState } from 'react'
-import { seedProducts } from '../lib/data'
-import {
-  loadCustomProducts,
-  saveCustomProducts,
-} from '../lib/customProducts'
 import ProductCard from './ProductCard'
 import AddCustomProduct from './AddCustomProduct'
-import type { CustomProduct, ProductCategory } from '../types'
+import type { CustomProduct, Product, ProductCategory } from '../types'
 
 const CATEGORIES: Array<ProductCategory | 'all'> = [
   'all',
@@ -19,38 +14,35 @@ const CATEGORIES: Array<ProductCategory | 'all'> = [
   'mask',
 ]
 
-export default function ProductLibrary() {
+interface Props {
+  products: Product[]
+  customCount: number
+  onAddCustom: (product: CustomProduct) => void
+  onDeleteCustom: (id: string) => void
+  routineTimesFor: (productId: string) => Array<'AM' | 'PM'>
+  onToggleRoutine: (productId: string, time: 'AM' | 'PM' | 'both') => void
+}
+
+export default function ProductLibrary({
+  products,
+  customCount,
+  onAddCustom,
+  onDeleteCustom,
+  routineTimesFor,
+  onToggleRoutine,
+}: Props) {
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState<ProductCategory | 'all'>('all')
-  const [customProducts, setCustomProducts] = useState<CustomProduct[]>(loadCustomProducts)
   const [showAdd, setShowAdd] = useState(false)
-
-  const allProducts = useMemo(
-    () => [...customProducts, ...seedProducts],
-    [customProducts],
-  )
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
-    return allProducts.filter((p) => {
+    return products.filter((p) => {
       if (category !== 'all' && p.category !== category) return false
       if (!q) return true
       return `${p.brand} ${p.name}`.toLowerCase().includes(q)
     })
-  }, [allProducts, query, category])
-
-  function addCustomProduct(product: CustomProduct) {
-    const next = [product, ...customProducts]
-    setCustomProducts(next)
-    saveCustomProducts(next)
-    setShowAdd(false)
-  }
-
-  function deleteCustomProduct(id: string) {
-    const next = customProducts.filter((p) => p.id !== id)
-    setCustomProducts(next)
-    saveCustomProducts(next)
-  }
+  }, [products, query, category])
 
   return (
     <section>
@@ -88,7 +80,7 @@ export default function ProductLibrary() {
 
       <p className="mt-4 text-sm text-stone-500">
         {filtered.length} product{filtered.length === 1 ? '' : 's'}
-        {customProducts.length > 0 && ` · ${customProducts.length} custom`}
+        {customCount > 0 && ` · ${customCount} custom`}
       </p>
 
       {filtered.length === 0 ? (
@@ -105,14 +97,22 @@ export default function ProductLibrary() {
             <ProductCard
               key={p.id}
               product={p}
-              onDelete={p.isCustom ? deleteCustomProduct : undefined}
+              onDelete={p.isCustom ? onDeleteCustom : undefined}
+              routineTimes={routineTimesFor(p.id)}
+              onToggleRoutine={onToggleRoutine}
             />
           ))}
         </div>
       )}
 
       {showAdd && (
-        <AddCustomProduct onSave={addCustomProduct} onClose={() => setShowAdd(false)} />
+        <AddCustomProduct
+          onSave={(p) => {
+            onAddCustom(p)
+            setShowAdd(false)
+          }}
+          onClose={() => setShowAdd(false)}
+        />
       )}
     </section>
   )

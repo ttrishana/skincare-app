@@ -15,9 +15,17 @@ const CATEGORY_STYLES: Record<ProductCategory, string> = {
 interface Props {
   product: Product
   onDelete?: (id: string) => void
+  /** Times of day this product is currently in the routine. */
+  routineTimes?: Array<'AM' | 'PM'>
+  onToggleRoutine?: (productId: string, time: 'AM' | 'PM' | 'both') => void
 }
 
-export default function ProductCard({ product, onDelete }: Props) {
+export default function ProductCard({
+  product,
+  onDelete,
+  routineTimes = [],
+  onToggleRoutine,
+}: Props) {
   const [expanded, setExpanded] = useState(false)
   const matched = product.ingredientIds
     .map((id) => ingredientById.get(id))
@@ -82,6 +90,39 @@ export default function ProductCard({ product, onDelete }: Props) {
           ))}
         </div>
       </button>
+
+      {onToggleRoutine && (
+        <div className="mt-3 flex items-center gap-1.5 border-t border-stone-100 pt-3">
+          <span className="mr-1 text-xs text-stone-400">Routine:</span>
+          {(['AM', 'PM'] as const).map((time) => {
+            const active = routineTimes.includes(time)
+            return (
+              <button
+                key={time}
+                onClick={() => onToggleRoutine(product.id, time)}
+                aria-pressed={active}
+                className={`cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium transition-colors ${
+                  active
+                    ? 'bg-stone-900 text-white hover:bg-stone-700'
+                    : 'bg-white text-stone-600 ring-1 ring-stone-200 hover:bg-stone-100'
+                }`}
+                title={active ? `Remove from ${time} routine` : `Add to ${time} routine`}
+              >
+                {time === 'AM' ? '☀️' : '🌙'} {time}
+                {active && ' ✓'}
+              </button>
+            )
+          })}
+          {routineTimes.length === 0 && (
+            <button
+              onClick={() => onToggleRoutine(product.id, 'both')}
+              className="cursor-pointer rounded-md px-2.5 py-1 text-xs font-medium text-stone-600 ring-1 ring-stone-200 hover:bg-stone-100"
+            >
+              Both
+            </button>
+          )}
+        </div>
+      )}
 
       {expanded && (
         <div className="mt-3 space-y-2 border-t border-stone-100 pt-3">
