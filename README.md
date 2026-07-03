@@ -20,7 +20,7 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - [x] **Phase 1** — data layer (types + seed JSON), product search/browse,
       "add custom product" flow with INCI-list matching
 - [x] **Phase 2** — routine builder (AM/PM slots, drag-to-reorder, localStorage)
-- [ ] Phase 3 — compatibility engine (pairwise conflict checks, layering order)
+- [x] **Phase 3** — compatibility engine (pairwise conflict checks, layering order)
 - [ ] Phase 4 — gap analysis
 - [ ] Phase 5 — redundancy & spend optimizer
 - [ ] Phase 6 — fuzzy ingredient matching + eval scaffolding (stats analysis
@@ -39,4 +39,7 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - `src/lib/customProducts.ts` — localStorage persistence for user products
 - `src/lib/routine.ts` + `src/lib/useRoutine.ts` — routine model (pure
   helpers) and its React/localStorage binding
+- `src/lib/conflicts.ts` + `src/lib/layering.ts` — compatibility engine:
+  pairwise rule matching (id- and category-level, most severe wins) and
+  thinnest-to-thickest layering checks; unit-tested (`npm test`)
 - `src/components/` — product library + routine builder UI

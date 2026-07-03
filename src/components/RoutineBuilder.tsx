@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import ConflictReport from './ConflictReport'
 import { slotsFor, type RoutineTime } from '../lib/routine'
 import type { RoutineApi } from '../lib/useRoutine'
 import type { Product, ProductCategory } from '../types'
@@ -36,6 +37,9 @@ function RoutineColumn({
   onBrowse,
 }: Props & { time: RoutineTime; icon: string }) {
   const slots = slotsFor(api.routine, time)
+  const orderedProducts = slots
+    .map((s) => productById.get(s.productId))
+    .filter((p): p is Product => p !== undefined)
   const [dragIndex, setDragIndex] = useState<number | null>(null)
   // Live-reorder while dragging: the list mutates under the pointer, so track
   // the item's current index in a ref updated on every crossover.
@@ -143,6 +147,8 @@ function RoutineColumn({
           })}
         </ol>
       )}
+
+      <ConflictReport products={orderedProducts} />
     </div>
   )
 }
