@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react'
 import ConflictReport from './ConflictReport'
+import CoverageReport from './CoverageReport'
 import { slotsFor, type RoutineTime } from '../lib/routine'
 import type { RoutineApi } from '../lib/useRoutine'
 import type { Product, ProductCategory } from '../types'
@@ -149,6 +150,7 @@ function RoutineColumn({
       )}
 
       <ConflictReport products={orderedProducts} />
+      <CoverageReport products={orderedProducts} time={time} />
     </div>
   )
 }
