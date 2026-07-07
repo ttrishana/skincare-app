@@ -1,32 +1,18 @@
 import { ingredientById, ingredients } from './data'
+import {
+  AUTO_ACCEPT_THRESHOLD,
+  matchIngredientFuzzy,
+  nameVariants,
+} from './fuzzyMatch'
 import type { Ingredient } from '../types'
 
 /**
- * Phase 1 matcher: normalized exact matching against INCI names, common
- * names, ids, and a small synonym table. Phase 6 replaces this with a
- * fuzzy/embedding matcher that returns confidence scores.
+ * Matching pipeline (Phase 6):
+ *  1. normalized exact match (INCI name, common name, id, synonyms) → confidence 1
+ *  2. fuzzy match (trigram TF-IDF + edit distance, see fuzzyMatch.ts) →
+ *     confidence in [REVIEW_THRESHOLD, 1); scores below REVIEW_THRESHOLD
+ *     are treated as no match
  */
-
-function normalize(s: string): string {
-  return s
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, ' ')
-    .trim()
-}
-
-/** "Water (Aqua)" → ["water aqua", "water", "aqua"] */
-function variants(name: string): string[] {
-  const out = [normalize(name)]
-  const outside = name.replace(/\([^)]*\)/g, ' ')
-  const inside = [...name.matchAll(/\(([^)]*)\)/g)].map((m) => m[1])
-  for (const v of [outside, ...inside]) {
-    const n = normalize(v)
-    if (n && !out.includes(n)) out.push(n)
-  }
-  return out
-}
 
 // Frequent label spellings that don't appear verbatim in ingredients.json
 const SYNONYMS: Record<string, string> = {
@@ -61,14 +47,14 @@ const SYNONYMS: Record<string, string> = {
 const lookup = new Map<string, Ingredient>()
 for (const ing of ingredients) {
   for (const name of [ing.inciName, ing.commonName, ing.id.replace(/-/g, ' ')]) {
-    for (const v of variants(name)) {
+    for (const v of nameVariants(name)) {
       if (!lookup.has(v)) lookup.set(v, ing)
     }
   }
 }
 
 export function matchIngredientName(raw: string): Ingredient | null {
-  for (const v of variants(raw)) {
+  for (const v of nameVariants(raw)) {
     const direct = lookup.get(v)
     if (direct) return direct
     const syn = SYNONYMS[v]
@@ -77,9 +63,35 @@ export function matchIngredientName(raw: string): Ingredient | null {
   return null
 }
 
+export type MatchMethod = 'exact' | 'fuzzy' | 'none'
+
 export interface TokenMatch {
   token: string
   ingredient: Ingredient | null
+  /** 1 for exact matches, hybrid score for fuzzy, 0 for no match. */
+  confidence: number
+  method: MatchMethod
+  /** True when the match should be shown to the user for confirmation. */
+  needsConfirmation: boolean
+}
+
+/** Match a single raw ingredient string through the full pipeline. */
+export function matchToken(token: string): TokenMatch {
+  const exact = matchIngredientName(token)
+  if (exact) {
+    return { token, ingredient: exact, confidence: 1, method: 'exact', needsConfirmation: false }
+  }
+  const fuzzy = matchIngredientFuzzy(token)
+  if (fuzzy) {
+    return {
+      token,
+      ingredient: fuzzy.ingredient,
+      confidence: fuzzy.confidence,
+      method: 'fuzzy',
+      needsConfirmation: fuzzy.confidence < AUTO_ACCEPT_THRESHOLD,
+    }
+  }
+  return { token, ingredient: null, confidence: 0, method: 'none', needsConfirmation: false }
 }
 
 /** Split a pasted INCI list on commas/newlines/bullets and match each token. */
@@ -88,5 +100,5 @@ export function matchInciList(raw: string): TokenMatch[] {
     .split(/[,;\n·•|]+/)
     .map((t) => t.replace(/\.\s*$/, '').trim())
     .filter(Boolean)
-    .map((token) => ({ token, ingredient: matchIngredientName(token) }))
+    .map(matchToken)
 }

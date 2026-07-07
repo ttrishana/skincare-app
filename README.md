@@ -23,8 +23,9 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 - [x] **Phase 3** — compatibility engine (pairwise conflict checks, layering order)
 - [x] **Phase 4** — gap analysis (functional coverage checklist per time of day)
 - [x] **Phase 5** — redundancy & spend optimizer
-- [ ] Phase 6 — fuzzy ingredient matching + eval scaffolding (stats analysis
-      done by hand, per spec §8)
+- [x] **Phase 6** — fuzzy ingredient matching with confidence scores, Claude
+      API extraction fallback, eval harness scaffold (stats analysis done by
+      hand, per spec §8 — see `eval/README.md`)
 - [ ] Phase 7 — dashboard/polish
 
 > Seed data (`src/data/conflict-rules.json`) reviewed and approved
@@ -34,8 +35,15 @@ Requires Node 20. (Vite is pinned to v6 because Vite 8 needs Node 20.19+.)
 
 - `src/types.ts` — Ingredient, ConflictRule, Product, Routine models
 - `src/data/` — seed JSON (154 ingredients, 31 conflict rules, 42 products)
-- `src/lib/matching.ts` — normalized exact INCI matching (Phase 6 replaces
-  this with a confidence-scored fuzzy matcher)
+- `src/lib/matching.ts` — matching pipeline: exact (confidence 1) → fuzzy
+- `src/lib/fuzzyMatch.ts` — trigram TF-IDF + edit-distance hybrid matcher
+  with confidence scores; thresholds are `TODO(trishana)` pending the eval
+  analysis
+- `src/lib/claudeExtract.ts` — optional Claude API structured extraction
+  for messy labels (user-supplied key, browser-only)
+- `data/eval/` + `eval/` — labeled-pairs scaffold, prediction generator
+  (`npm run eval:predict`), and stubbed analysis template (metrics are
+  hand-computed, never by Claude Code)
 - `src/lib/customProducts.ts` — localStorage persistence for user products
 - `src/lib/routine.ts` + `src/lib/useRoutine.ts` — routine model (pure
   helpers) and its React/localStorage binding

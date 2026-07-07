@@ -1,0 +1,21 @@
+{
+  "_readme": [
+    "Hand-labeled evaluation set for the ingredient matcher (spec §8, step 1).",
+    "Each pair is: the raw ingredient text exactly as you'd paste it, and the",
+    "TRUE canonical ingredient id from src/data/ingredients.json — or null if",
+    "the text genuinely matches nothing in the catalog (that's a real class!).",
+    "Replace/extend the starter examples below with your own ~100-150 labels.",
+    "Mix easy cases with deliberately messy ones: typos, reordered words,",
+    "trade names, percentages, OCR junk, and near-misses that SHOULD be null."
+  ],
+  "pairs": [
+    { "raw": "Niacinamide", "trueIngredientId": "niacinamide" },
+    { "raw": "niacinimide 10%", "trueIngredientId": "niacinamide" },
+    { "raw": "Sodium Hyaluronate Crosspolymer", "trueIngredientId": "sodium-hyaluronate" },
+    { "raw": "Aqua/Water/Eau", "trueIngredientId": "water" },
+    { "raw": "Butyrospermum Parkii (Shea) Butter", "trueIngredientId": "shea-butter" },
+    { "raw": "glicolic acid", "trueIngredientId": "glycolic-acid" },
+    { "raw": "Pentylene Glycol", "trueIngredientId": null },
+    { "raw": "Matrixyl 3000", "trueIngredientId": "palmitoyl-tripeptide-1" }
+  ]
+}

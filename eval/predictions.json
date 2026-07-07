@@ -1,0 +1,58 @@
+[
+  {
+    "raw": "Niacinamide",
+    "trueIngredientId": "niacinamide",
+    "predictedId": "niacinamide",
+    "confidence": 1,
+    "method": "exact"
+  },
+  {
+    "raw": "niacinimide 10%",
+    "trueIngredientId": "niacinamide",
+    "predictedId": "niacinamide",
+    "confidence": 0.7142857142857143,
+    "method": "fuzzy"
+  },
+  {
+    "raw": "Sodium Hyaluronate Crosspolymer",
+    "trueIngredientId": "sodium-hyaluronate",
+    "predictedId": "sodium-hyaluronate",
+    "confidence": 0.7803574437468047,
+    "method": "fuzzy"
+  },
+  {
+    "raw": "Aqua/Water/Eau",
+    "trueIngredientId": "water",
+    "predictedId": "water",
+    "confidence": 0.6926142641436404,
+    "method": "fuzzy"
+  },
+  {
+    "raw": "Butyrospermum Parkii (Shea) Butter",
+    "trueIngredientId": "shea-butter",
+    "predictedId": "shea-butter",
+    "confidence": 1,
+    "method": "exact"
+  },
+  {
+    "raw": "glicolic acid",
+    "trueIngredientId": "glycolic-acid",
+    "predictedId": "glycolic-acid",
+    "confidence": 0.9230769230769231,
+    "method": "fuzzy"
+  },
+  {
+    "raw": "Pentylene Glycol",
+    "trueIngredientId": null,
+    "predictedId": "propylene-glycol",
+    "confidence": 0.8125,
+    "method": "fuzzy"
+  },
+  {
+    "raw": "Matrixyl 3000",
+    "trueIngredientId": "palmitoyl-tripeptide-1",
+    "predictedId": "palmitoyl-pentapeptide-4",
+    "confidence": 0.9843682472091737,
+    "method": "fuzzy"
+  }
+]
