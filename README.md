@@ -1,10 +1,10 @@
-# Skincare Routine Optimizer
+# Skincare Routine Optimizer :D
 
-Web app for building an AM/PM skincare routine, checking products for
+a lil web app for building an am/pm skincare routine, checking products for
 ingredient conflicts, spotting coverage gaps, and finding redundant spending.
 Full build spec: [docs/spec.md](docs/spec.md).
 
-**Not medical advice** — educational/organizational tool only.
+!!not medical advice!! — educational/organizational tool only.
 
 ## Run
 
